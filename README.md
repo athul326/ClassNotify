@@ -4,5 +4,7 @@ A simple program that searches through TAMU's public class search website and no
 Requires Twilio
 
 USAGE:
-Input courses into classList.py
+
+Input courses into classList.py 
+
 Swap values in message function in main.py with appropriate values from your Twilio
