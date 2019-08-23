@@ -2,15 +2,14 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from twilio.rest import Client
 from bs4 import BeautifulSoup
 import os
 import time
 import classList
 import apikeys
-
 # sends message to appropriate user's phone number informing them of class opening, uses Twilio API
 def message(text):
-    from twilio.rest import Client
     account_sid = apikeys.accountID  # requires Twilio account and authorized number to send messages from
     auth_token = apikeys.authKey
     client = Client(account_sid, auth_token)
@@ -31,7 +30,7 @@ def search(driver):
     term_input = driver.find_element_by_id("s2id_autogen1_search")
     term_input.send_keys("Fall 2019 - College Station")
     term_input.click()
-    time.sleep(0.5)
+    time.sleep(0.75)
     term_input.send_keys(Keys.RETURN)
     time.sleep(0.5)
     term_next = driver.find_element_by_id("term-go")
@@ -66,7 +65,7 @@ def search(driver):
             for sections in classList.userClasses[x]:
                 if tds[1].text == sections:
                     if "FULL" not in tds[10].text:
-                        text_send = x + ' - ' + classList.userClasses[x] + ' has open seats'
+                        text_send = x + ' - ' + sections + ' has open seats'
                         message(text_send)  # sends message if there is availability in given section
         # goes through and resets page to get ready for the next course search
         search_again = driver.find_element_by_id("search-again-button")
@@ -82,7 +81,8 @@ def main():
     chrome_options.add_argument("--headless")
     chrome_driver = os.getcwd() + "\\chromedriver.exe"
     driver = webdriver.Chrome(options=chrome_options, executable_path=chrome_driver)
+    return driver
     # endless loop to keep program running and search for classes every 5 minutes to not overload the server
-    while True:
-        search(driver)
-        time.sleep(300)
+    #while True:
+      #  search(driver)
+      #  time.sleep(300)

@@ -1,0 +1,4 @@
+accountID = ''
+authKey = ''
+fromNumber = ''
+toNumber = ''
