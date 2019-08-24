@@ -5,8 +5,17 @@ Requires Twilio and Selenium ChromeDriver
 
 USAGE:
 
-Ensure chromedriver.exe is placed in same location as main.py
+Ensure chromedriver.exe is placed in same location as all the .py files
 
-Input courses into classList.py 
+Register for an account at twilio.com and use their free trial to get a valid twilio id, authkey and twilio phone number
 
-Swap values in message function in main.py with appropriate values from your Twilio
+Run gui.py through commandline using Python3
+
+Specify classes to search with ADD button
+
+Use Twilio Info button and input the values you got from twilio.com
+
+Start the program, it will search for classes every 5 minutes
+
+Stop the program using the stop button
+
